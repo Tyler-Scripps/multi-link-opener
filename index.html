@@ -13,10 +13,18 @@
         const URLs = query.split(pattern);
         console.log(URLs);
         firstURL = URLs.shift();
+        blocked = false;
         URLs.reverse().forEach(url => {
-            window.open(url, "_blank");
+            newWin = window.open(url, "_blank");
+            if(!newWin || newWin.closed || typeof newWin.closed=='undefined') 
+            { 
+                blocked = true;
+            }
         });
-        window.open(firstURL, "_self");
+        if(!blocked){
+            window.open(firstURL, "_self");
+        }
+        
     </script>
 </body>
 </html>
