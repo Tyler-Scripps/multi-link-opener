@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>multiple url opener</title>
+</head>
+<body>
+    <script>
+        query = window.location.search;
+        query = query.slice(1);
+        console.log(query);
+        const pattern = /;(?=http)/g;
+        const URLs = query.split(pattern);
+        console.log(URLs);
+        firstURL = URLs.shift();
+        URLs.reverse().forEach(url => {
+            window.open(url, "_blank");
+        });
+        window.open(firstURL, "_self");
+    </script>
+</body>
+</html>
